@@ -2458,6 +2458,18 @@ convert_type:
   {
     $$ = &ConvertType{Type: string($1)}
   }
+| INT
+  {
+    $$ = &ConvertType{Type: string($1)}
+  }
+| INTEGER
+  {
+    $$ = &ConvertType{Type: string($1)}
+  }
+| VARCHAR length_opt charset_opt
+  {
+    $$ = &ConvertType{Type: string($1), Length: $2, Charset: $3, Operator: CharacterSetStr}
+  }
 
 expression_opt:
   {
